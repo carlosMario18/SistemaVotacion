@@ -1,24 +1,85 @@
-# SistemaVotacion
-Sistema de votacion en tiempo real usando DRF y Docker
+# 🗳️ Real-Time Voting API - Django Rest Framework
+
+API RESTful simple para un sistema de **votaciones en tiempo real**, desarrollada con **Django Rest Framework**, **PostgreSQL** y **Docker**.
+
+## 🚀 Características
+
+- Crear encuestas con múltiples opciones.
+- Consultar resultados (votos por opción).
+- Votar por una opción específica.
+- Base de datos persistente en PostgreSQL.
+- Pruebas automatizadas de integración y E2E.
+- Configuración lista para entornos locales o Docker.
+
+---
+
+## 🧩 Tecnologías
+
+- **Python 3.10**
+- **Django 4.2**
+- **Django REST Framework**
+- **PostgreSQL 15**
+- **Docker & Docker Compose**
+- **pytest + Playwright**
+
+---
+
+## ⚙️ Requisitos previos
+
+Antes de comenzar, asegúrate de tener instalado:
+
+- [Python 3.10+](https://www.python.org/downloads/)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+- [Git](https://git-scm.com/)
+- [Visual Studio Code](https://code.visualstudio.com/) (recomendado)
 
 
+# 1. Clonar el repositorio
+# 2. crear y activar entorno virtual
+- python -m venv venv
+- venv\Scripts\activate
+- cd voting_api
+
+# 3. Instalar dependencias
+- pip install --upgrade pip
+- pip install -r requirements.txt
+
+# 4. crear archivo .env en la raiz del proyecto.
+
+SECRET_KEY=django-insecure-tukeysegura
+DEBUG=True
+DB_NAME=votingdb
+DB_USER=postgres
+DB_PASSWORD=tu_password
+DB_HOST=localhost
+DB_PORT=5432
+
+# 5. Migraciones.
+- python manage.py makemigrations
+- python manage.py migrate
+
+# 6. Ejecutar en local.
+- python manage.py runserver
+
+## ENDPOINTS DISPONIBLES
+| Método | URL               | Descripción                  | Datos esperados                                                                  |
+| ------ | ----------------- | ---------------------------- | -------------------------------------------------------------------------------- |
+| POST   | /polls/           | Crear encuesta               | `{ "title": "Pregunta", "options": [{"text": "Opción1"}, {"text": "Opción2"}] }` |
+| GET    | /polls/{id}/      | Obtener detalles de encuesta | -                                                                                |
+| POST   | /polls/{id}/vote/ | Votar en una opción          | `{ "option_id": 1 }`                                                             |
 
 
+# Pruebas unitarias.
+- python manage.py test
 
 
+## Levantar proyecto con Docker.
 
+- docker-compose up --build
 
-
-
-
-
-
-
-
-
-
-
-
+# Migraciones.
+- docker-compose exec web python manage.py makemigrations
+- docker-compose exec web python manage.py migrate
 
 
 
