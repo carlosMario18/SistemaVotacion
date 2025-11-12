@@ -18,7 +18,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Cargar .env desde la carpeta raíz del proyecto (un nivel arriba de voting_app)
-dotenv_path = BASE_DIR.parent / '.env'
+dotenv_path = BASE_DIR/ '.env'
 load_dotenv(dotenv_path)
 
 
@@ -26,7 +26,7 @@ load_dotenv(dotenv_path)
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-t283x5b0g9w)0&v0pu8t11y^#j03+$(ym%&*wu8(w$if*5)0u*'
+SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
