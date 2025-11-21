@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:15
+    container_name: voting_db
+    restart: always
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+
+  web:
+    build: ./voting_app
+    container_name: voting_api
+    command: >
+      sh -c "sleep 4 &&
+       python voting_app/manage.py migrate &&
+       python voting_app/manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+
+  voting_frontend:
+    build: ./voting-frontend
+    container_name: voting_frontend
+    ports:
+    - "5173:80"
+    depends_on:
+    - web
+
+volumes:
+  postgres_data:
