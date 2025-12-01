@@ -32,17 +32,22 @@ Antes de comenzar, asegúrate de tener instalado:
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 - [Git](https://git-scm.com/)
 - [Visual Studio Code](https://code.visualstudio.com/) (recomendado)
+- [PostgreSQL](https://www.postgresql.org/)
+- Gestor de DBs de su preferencia (Dbeaver, mySQL).
 
 
 # 1. Clonar el repositorio
 # 2. crear y activar entorno virtual
 - python -m venv venv
 - venv\Scripts\activate
+- pip install --upgrade pip
 - cd voting_api
 
 # 3. Instalar dependencias
-- pip install --upgrade pip
 - pip install -r requirements.txt
+
+# DB.
+- Crear una base de datos en postgresql con las mismas credenciales que pusiste en tu .env, (ver paso siguiente para corroborar credenciales).
 
 # 4. crear archivo .env en la raiz del proyecto.
 
